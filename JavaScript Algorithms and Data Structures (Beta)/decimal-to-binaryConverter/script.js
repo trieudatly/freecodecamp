@@ -30,19 +30,28 @@ const result = document.getElementById("result");
 // };
 
 //ver 2
+// const decimalToBinary = (input) => {
+//   let binary = "";
+
+//   if (input === 0) {
+//     binary = "0";
+//   }
+
+//   while (input > 0) {
+//     binary = (input % 2) + binary;
+//     input = Math.floor(input / 2);
+//   }
+
+//   result.innerText = binary;
+// };
+
+//ver 3
 const decimalToBinary = (input) => {
-  let binary = "";
-
-  if (input === 0) {
-    binary = "0";
+  if (input === 0 || input === 1) {
+    return String(input);
+  } else {
+    return decimalToBinary(Math.floor(input / 2)) + (input % 2);
   }
-
-  while (input > 0) {
-    binary = (input % 2) + binary;
-    input = Math.floor(input / 2);
-  }
-
-  result.innerText = binary;
 };
 const checkUserInput = () => {
   if (
@@ -54,7 +63,7 @@ const checkUserInput = () => {
     return;
   }
 
-  decimalToBinary(parseInt(numberInput.value));
+  result.innerText = decimalToBinary(parseInt(numberInput.value));
   numberInput.value = "";
 };
 
